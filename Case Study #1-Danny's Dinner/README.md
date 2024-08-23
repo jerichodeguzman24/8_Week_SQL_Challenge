@@ -45,3 +45,5 @@ JOIN menu AS M
 ON S.product_id = M.product_id
 GROUP BY customer_id;
 
+
+
