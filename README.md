@@ -10,7 +10,7 @@ Feel free to reach out for any questions or suggestions about this project. I'm 
 
 Don't forget to follow and star ⭐ the repository if you find it valuable.
 
-Tools Used🛠️ : PostgreSQL
+Tools Used🛠️ : MySQL Workbench
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
