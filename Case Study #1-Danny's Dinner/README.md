@@ -6,7 +6,7 @@
 
 # Contents
 
-* [Introduction](# Introduction)
+* [Introduction](#Introduction)
 * [Problem Statement](URL)
 * [Entity Relation Diagram](URL)
 * [Case Study Questions and Solutions](URL)
