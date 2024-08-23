@@ -38,7 +38,7 @@ Danny has shared with you 3 key datasets for this case study:
 
 1. What is the total amount each customer spent at the restaurant?
 
-```code
+```sql
 SELECT S.customer_id AS customer_id, SUM(M.price) AS total_amount
 FROM sales AS S
 JOIN menu AS M
