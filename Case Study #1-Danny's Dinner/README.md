@@ -34,3 +34,9 @@ Danny has shared with you 3 key datasets for this case study:
 <img src="Case_Study_1_ERD.jpeg" width="50%">
 </div>
 
+# Case Study Questions and Solutions
+
+```code
+This is a code block.
+You can paste this code directly.
+
