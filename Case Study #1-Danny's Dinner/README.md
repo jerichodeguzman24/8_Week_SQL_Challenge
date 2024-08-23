@@ -36,7 +36,12 @@ Danny has shared with you 3 key datasets for this case study:
 
 # Case Study Questions and Solutions
 
+1. What is the total amount each customer spent at the restaurant?
+
 ```code
-This is a code block.
-You can paste this code directly.
+SELECT S.customer_id AS customer_id, SUM(M.price) AS total_amount
+FROM sales AS S
+JOIN menu AS M
+ON S.product_id = M.product_id
+GROUP BY customer_id;
 
