@@ -31,6 +31,6 @@ Danny has shared with you 3 key datasets for this case study:
 # Entity Relationship Diagram
 
 <div align="left">
-<img src="Case_Study_1_ERD" width="50%">
+<img src="Case_Study_1_ERD.jpeg" width="50%">
 </div>
 
