@@ -45,9 +45,12 @@ JOIN menu AS M
 ON S.product_id = M.product_id
 GROUP BY customer_id;
 ```
+**Answer:**
+
 <div align="left">
-<img src="Dannys_Diner_1.jpeg" width="25%", height="5%">
+<img src="Dannys_Diner_1.jpeg" width="20%", height="5%">
 </div>
 
+* The SQL query retrieves the <mark color="050505">customer_id<mark>
 
 
