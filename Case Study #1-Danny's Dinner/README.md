@@ -46,7 +46,7 @@ ON S.product_id = M.product_id
 GROUP BY customer_id;
 ```
 <div align="left">
-<img src="Dannys_Diner_1.jpeg" width="30%", height="10%">
+<img src="Dannys_Diner_1.jpeg" width="30%", height="5%">
 </div>
 
 
