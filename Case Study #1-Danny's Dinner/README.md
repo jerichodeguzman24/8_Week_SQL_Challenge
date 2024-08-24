@@ -45,8 +45,9 @@ JOIN menu AS M
 ON S.product_id = M.product_id
 GROUP BY customer_id;
 ```
-
-This is a <mark color=' #505050'>highlighted<mark> word.
+<div align="left">
+<img src="SQL_Challenge_pic_1.png" width="50%">
+</div>
 
 
 
