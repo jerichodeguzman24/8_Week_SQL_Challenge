@@ -43,14 +43,28 @@ SELECT S.customer_id AS customer_id, SUM(M.price) AS total_amount
 FROM sales AS S
 JOIN menu AS M
 ON S.product_id = M.product_id
-GROUP BY customer_id;
+GROUP BY customer_id
+ORDER BY customer_id;
 ```
+
 **Answer:**
 
 <div align="left">
 <img src="Dannys_Diner_1.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query retrieves the <mark color="050505">customer_id<mark>
+* The SQL query retrieves the <mark>customer_id</mark> and calculate the sum of the price aliasing the name as the <mark>total_amount</mark> by each customer in the restaurant.
+* It combines the <mark>sales</mark> and <mark>menu</mark> table based on matching each table's <mark>product_id</mark>.
+* The results are grouped by <mark>customer_id</mark>.
+* The query calculates each <mark>customer_id</mark> by the sum of the <mark>price</mark> of the product.
+* Finally the results are alphabetically ordered by <mark>customer_id<mark>.
 
+2. How many days has each customer visited the restaurant?
 
+```sql
+SELECT customer_id, COUNT(DISTINCT order_date) AS No_days
+FROM sales
+GROUP BY customer_id;
+```
+
+**Answer**
