@@ -43,7 +43,5 @@ SELECT S.customer_id AS customer_id, SUM(M.price) AS total_amount
 FROM sales AS S
 JOIN menu AS M
 ON S.product_id = M.product_id
-GROUP BY customer_id;
-
-
+GROUP BY customer_id; ```
 
