@@ -53,7 +53,7 @@ ORDER BY customer_id;
 <img src="Dannys_Diner_1.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query retrieves the <mark>customer_id</mark> and calculate the sum of the price aliasing the name as the <mark>total_amount</mark> by each customer in the restaurant.
+* The SQL query retrieves the <mark>customer_id</mark> and calculate the sum of the price aliasing the name as the <mark>(total_amount)</mark> by each customer in the restaurant.
 * It combines the <mark>sales</mark> and <mark>menu</mark> table based on matching each table's <mark>product_id</mark>.
 * The results are grouped by <mark>customer_id</mark>.
 * The query calculates each <mark>customer_id</mark> by the sum of the <mark>price</mark> of the product.
@@ -67,4 +67,35 @@ FROM sales
 GROUP BY customer_id;
 ```
 
-**Answer**
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_2.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query selects the <mark>customer_id</mark> and the unique count of the <mark>order_date</mark> aliasing the name as (No_days) for each customer.
+* It retrieves the data to the <mark>sales</mark> table.
+* The results are grouped by <mark>customer_id</mark>.
+* The <mark>COUNT(DISTINCT order_date)</mark> calculates the number of uniques order dates for each customer.
+* Finally, the query presents the <mark>customer_id</mark> and the total number of uniques order dates as <mark>(No_days)</mark>.
+
+3. What was the first item from the menu purchased by each customer?
+
+```sql
+WITH first_order AS (SELECT S.customer_id, M.product_name, DENSE_RANK() OVER(ORDER BY S.order_date ASC) AS rank_order, S.order_date
+						FROM sales AS S
+                        JOIN menu AS M
+                        ON S.product_id = M.product_id)
+                        
+SELECT customer_id,product_name, order_date
+FROM first_order
+WHERE rank_order = 1;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_3.jpeg" width="20%", height="5%">
+</div>
+
+
