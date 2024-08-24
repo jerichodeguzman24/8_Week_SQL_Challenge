@@ -44,7 +44,9 @@ FROM sales AS S
 JOIN menu AS M
 ON S.product_id = M.product_id
 GROUP BY customer_id;
-
+```
 
 This is a <mark>highlighted</mark> word.
+
+
 
