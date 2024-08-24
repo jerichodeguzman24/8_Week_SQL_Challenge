@@ -46,7 +46,7 @@ ON S.product_id = M.product_id
 GROUP BY customer_id;
 ```
 
-This is a <mark>highlighted</mark> word.
+This is a **highlighted** word.
 
 
 
