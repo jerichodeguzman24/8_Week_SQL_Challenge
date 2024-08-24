@@ -82,8 +82,9 @@ GROUP BY customer_id;
 3. What was the first item from the menu purchased by each customer?
 
 ```sql
-WITH first_order AS (SELECT S.customer_id, M.product_name, DENSE_RANK() OVER(ORDER BY S.order_date ASC) AS rank_order, S.order_date
-						FROM sales AS S
+WITH first_order AS (SELECT S.customer_id, M.product_name,
+			DENSE_RANK() OVER(ORDER BY S.order_date ASC) AS rank_order, S.order_date
+			FROM sales AS S
                         JOIN menu AS M
                         ON S.product_id = M.product_id)
                         
