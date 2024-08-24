@@ -8,7 +8,7 @@
 
 * [Introduction](#Introduction)
 * [Problem Statement](#Problem-Statement)
-* [Entity Relation Diagram](URL)
+* [Entity Relation Diagram](#Entity-Relationship-Diagram)
 * [Case Study Questions and Solutions](URL)
 * [Bonus Questions and Solutions](URL)
 * [Key Insights](URL)
@@ -98,5 +98,61 @@ WHERE rank_order = 1;
 <div align="left">
 <img src="Dannys_Diner_3.jpeg" width="20%", height="5%">
 </div>
+
+* The SQL query use a Common Table Expression named <mark>(first_order)</mark> to generate a temporary result.
+* The CTE contains the following column <mark>customer_id</mark>, <mark>product name</mark>, <mark>rank_order</mark> and <mark>order_date</mark>.
+* The **DENSE_RANK()** function assigns rank depending on the <mark>order_date</mark> and it is ranked in ascending order.
+* The CTE <mark>first_order</mark> combines the table <mark>sales</mark> and <mark>menu</mark> on <mark>product_id</mark>.
+* The main query gets the <mark>customer_id</mark>, <mark>product_name</mark>, and <mark>order_date</mark> column on the CTE named **first_order**.
+* Lastly, main query filtered when the <mark>rank_order</mark> is equals to 1, which means the earliest purchase.
+
+4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+
+```sql
+SELECT M.product_name AS product_name, COUNT(M.product_name) AS times_purchased
+FROM sales AS S
+JOIN menu AS M
+ON S.product_id = M.product_id
+GROUP BY product_name
+ORDER BY times_purchased DESC
+LIMIT 1;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_4.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query returns the column <mark>product_name</mark> and <mark>times_purchased</mark>.
+* The <mark>COUNT(M.product_name)</mark> function counts the number of the <mark>product_name<mark> with the alias <mark>times_purchased</mark>.
+* This table retrieves data in the <mark>sales</mark> and <mark>menu</mark> combined.
+* Then it is grouped by <mark>product_name</mark> to calculate how many times a certain item is purchased.
+* It is ordered by the <mark>times_purchased</mark> in descending order and with the limit of 1 to display the first value in the table row.
+
+5. Which item was the most popular for each customer?
+
+```sql
+WITH popular AS (SELECT customer_id, product_name, COUNT(product_name) AS popular_count,
+ 			DENSE_RANK() OVER(PARTITION BY customer_id ORDER BY COUNT(product_name) DESC) AS ranks
+			FROM sales AS S
+                    	JOIN menu AS M
+                    	ON S.product_id = M.product_id
+                    	GROUP BY customer_id, product_name)
+
+SELECT customer_id, product_name
+FROM popular
+WHERE ranks = 1;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_5.jpeg" width="20%", height="5%">
+</div>
+
+* This SQL query creates a CTE named popular
+
+
 
 
