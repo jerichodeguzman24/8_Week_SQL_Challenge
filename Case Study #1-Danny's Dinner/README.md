@@ -198,8 +198,111 @@ ON S.customer_id = ME.customer_id
 WHERE order_date < join_date;
 ```
 
+**Answer:**
 
+<div align="left">
+<img src="Dannys_Diner_7.jpeg" width="20%", height="5%">
+</div>
 
+* The SQL query returns the column <code>customer_id</code> and <code>product_name</code>.
+* It retrieves the data from the joined table of <code>sales</code>, <code>menu</code> and <code>members</code>.
+* The <mark>sales</mark> table and <mark>menu</mark> table are joined by their product ID's, while the <mark>members</mark> table and <mark>members</mark> table are joined by their customer ID's.
+* Lastly, the code results return the <code>customer_id</code> and <code>product_name</code>, filtered when <code>order_date</code> is less than the <code>join_date</code>.
 
+8. What is the total items and amount spent for each member before they became a member?
 
+```sql
+SELECT S.customer_id AS customer_id, COUNT(product_name) AS total_items, SUM(price) AS total_amount
+FROM sales AS S
+LEFT JOIN menu AS M
+ON S.product_id = M.product_id
+LEFT JOIN members AS ME
+ON S.customer_id = ME.customer_id
+WHERE order_date < join_date
+GROUP BY customer_id;
+```
 
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_8.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query returns the <code>customer_id</code>, <code>total_items</code> and <code>total_amount</code>.
+* The data is retrieve from the <mark>sales</mark>, <mark>menu</mark> and <mark>members</mark> combined.
+* The <mark>sales</mark> table is joined with <mark>menu</mark> table on their product ID's, while the <mark>members</mark> table and <mark>sales</mark> table are joined with their customer ID's.
+* The <code>COUNT(product_name)</code> counts the product that each customer purchase and the <code>SUM(price)</code> gets the total of the price of each customer spends.
+* The query is also filtered where the <code>order_date</code> is less than the <code>join_date</code> to get the purchases of each customer before they become a member.
+* Finally, the query is grouped by <code>customer_id</code> to know what each customer bought before they become a member.
+
+9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+
+```sql
+WITH CTE AS (SELECT customer_id, CASE WHEN product_name = 'sushi' THEN price * 20 ELSE price * 10 END AS points
+		FROM sales AS S
+		LEFT JOIN menu AS M
+		ON S.product_id = M.product_id)
+
+SELECT customer_id, SUM(points) AS customer_points
+FROM CTE
+GROUP BY customer_id;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_9.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query retrieves the <code>customer_id</code> and calculates the total points <code>(total_points)</code> earned by each customer based on their purchases from the sales and menu tables.
+* It retrieves data from the <mark>sales</mark> table and joins it with the <mark>menu</mark> table based on matching <code>product_id</code>.
+* The query uses a <code>CASE</code> statement to differentiate between 'sushi' and other products.
+* If the product name is 'sushi', the price is multiplied by 2 to give double points.
+Otherwise, the regular price is considered.
+* The <code>SUM</code> function calculates the total points for each customer by adding up the points earned from their purchases.
+* The total points are then multiplied by 10 to give a scaled value.
+* Results are grouped by <code>customer_id</code> to get the total points for each customer.
+* The query then presents the <code>customer_id</code> and the scaled total_points for each customer based on their purchases.
+* Finally, the results are sorted in ascending order based on the <code>customer_id</code>.
+
+10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+```sql
+WITH dates_table AS (SELECT customer_id,
+                        join_date, 
+                        join_date + INTERVAL 6 day AS first_week,
+                        LAST_DAY('2021-01-01') AS last_date
+                        FROM members)
+                        
+SELECT S.customer_id,
+SUM(CASE WHEN M.product_name = 'sushi' OR (S.order_date BETWEEN dates_table.join_date AND dates_table.first_week) THEN M.price * 2 * 10
+ELSE M.price * 10 END) AS points
+FROM sales AS S
+INNER JOIN dates_table
+ON S.customer_id = dates_table. customer_id AND dates_table.join_date <= S.order_date
+AND S.order_date <= dates_table.last_date
+INNER JOIN menu AS M
+ON S.product_id = M.product_id
+GROUP BY S.customer_id
+ORDER BY S.customer_id;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_10.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query has a temporary table called dates_table and it returns the following columns <code>customer_id</code>, <code>join_date</code>, <code>first_week</code> and <code>last_date</code>.
+* The data come from the <mark>members</mark> table.
+* The CTE named dates_table generates the date ranges for each customers from their <code>join_date</code> to the 6 days after they joined and from the last day of January.
+* The main query selects the <code>customer_id</code> and the sum of all the points each customer gained.
+* The <code>SUM</code> function gets all the some of the points by each <code>customer_id</code>
+* The main query also uses the <code>CASE</code> to met a certain condition like for the 'sushi' it has 2 times more points than the other food and on the first week of being a member each customer has a double points for their purchase in any food.
+* If the product name is 'sushi' or the order date falls within the range of <code>join_date</code> to <code>valid_date</code>, the points are calculated as 2 times 10 times the price of the product.
+* Otherwise, for other products, the points are calculated as 10 times the price of the product.
+* Results are grouped by <code>customer_id</code> to get the total points for each customer.
+* The query then presents the <code>customer_id</code> and the calculated points for each customer based on their purchases.
+* Finally, the results are sorted in ascending order based on the <code>customer_id</code>.
+
+# Bonus Questions and Solutions
