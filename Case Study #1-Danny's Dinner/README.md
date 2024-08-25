@@ -125,7 +125,7 @@ LIMIT 1;
 </div>
 
 * The SQL query returns the column <code>product_name</code> and <code>times_purchased</code>.
-* The <code>COUNT(M.product_name)</code> function counts the number of the <code>product_name<code> with the alias <code>times_purchased</code>.
+* The <code>COUNT(M.product_name)</code> function counts the number of the <code>product_name</code> with the alias <code>times_purchased</code>.
 * This table retrieves data in the <code>sales</code> and <code>menu</code> combined.
 * Then it is grouped by <code>product_name</code> to calculate how many times a certain item is purchased.
 * It is ordered by the <code>times_purchased</code> in descending order and with the limit of 1 to display the first value in the table row.
