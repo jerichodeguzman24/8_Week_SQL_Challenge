@@ -53,11 +53,11 @@ ORDER BY customer_id;
 <img src="Dannys_Diner_1.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query retrieves the <mark>customer_id</mark> and calculate the sum of the price aliasing the name as the <mark>(total_amount)</mark> by each customer in the restaurant.
-* It combines the <mark>sales</mark> and <mark>menu</mark> table based on matching each table's <mark>product_id</mark>.
-* The results are grouped by <mark>customer_id</mark>.
-* The query calculates each <mark>customer_id</mark> by the sum of the <mark>price</mark> of the product.
-* Finally the results are alphabetically ordered by <mark>customer_id<mark>.
+* The SQL query retrieves the <code>customer_id</code> and calculate the sum of the price aliasing the name as the <code>(total_amount)</code> by each customer in the restaurant.
+* It combines the <mark>sales</mark> and <mark>menu</mark> table based on matching each table's <code>product_id</code>.
+* The results are grouped by <code>customer_id</code>.
+* The query calculates each <code>customer_id</code> by the sum of the <code>price</code> of the product.
+* Finally the results are alphabetically ordered by <code>customer_id<code>.
 
 2. How many days has each customer visited the restaurant?
 
@@ -73,11 +73,11 @@ GROUP BY customer_id;
 <img src="Dannys_Diner_2.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query selects the <mark>customer_id</mark> and the unique count of the <mark>order_date</mark> aliasing the name as (No_days) for each customer.
-* It retrieves the data to the <mark>sales</mark> table.
-* The results are grouped by <mark>customer_id</mark>.
-* The <mark>COUNT(DISTINCT order_date)</mark> calculates the number of uniques order dates for each customer.
-* Finally, the query presents the <mark>customer_id</mark> and the total number of uniques order dates as <mark>(No_days)</mark>.
+* The SQL query selects the <code>customer_id</code> and the unique count of the <code>order_date</code> aliasing the name as (No_days) for each customer.
+* It retrieves the data to the <code>sales</code> table.
+* The results are grouped by <code>customer_id</code>.
+* The <code>COUNT(DISTINCT order_date)</code> calculates the number of uniques order dates for each customer.
+* Finally, the query presents the <code>customer_id</code> and the total number of uniques order dates as <code>(No_days)</code>.
 
 3. What was the first item from the menu purchased by each customer?
 
@@ -99,12 +99,12 @@ WHERE rank_order = 1;
 <img src="Dannys_Diner_3.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query use a Common Table Expression named <mark>(first_order)</mark> to generate a temporary result.
-* The CTE contains the following column <mark>customer_id</mark>, <mark>product name</mark>, <mark>rank_order</mark> and <mark>order_date</mark>.
-* The **DENSE_RANK()** function assigns rank depending on the <mark>order_date</mark> and it is ranked in ascending order.
-* The CTE <mark>first_order</mark> combines the table <mark>sales</mark> and <mark>menu</mark> on <mark>product_id</mark>.
-* The main query gets the <mark>customer_id</mark>, <mark>product_name</mark>, and <mark>order_date</mark> column on the CTE named **first_order**.
-* Lastly, main query filtered when the <mark>rank_order</mark> is equals to 1, which means the earliest purchase.
+* The SQL query use a Common Table Expression named <code>(first_order)</code> to generate a temporary result.
+* The CTE contains the following column <code>customer_id</code>, <code>product name</code>, <code>rank_order</code> and <code>order_date</code>.
+* The **DENSE_RANK()** function assigns rank depending on the <code>order_date</code> and it is ranked in ascending order.
+* The CTE <code>first_order</code> combines the table <code>sales</code> and <code>menu</code> on <code>product_id</code>.
+* The main query gets the <code>customer_id</code>, <code>product_name</code>, and <code>order_date</code> column on the CTE named **first_order**.
+* Lastly, main query filtered when the <code>rank_order</code> is equals to 1, which means the earliest purchase.
 
 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
@@ -124,11 +124,11 @@ LIMIT 1;
 <img src="Dannys_Diner_4.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query returns the column <mark>product_name</mark> and <mark>times_purchased</mark>.
-* The <mark>COUNT(M.product_name)</mark> function counts the number of the <mark>product_name<mark> with the alias <mark>times_purchased</mark>.
-* This table retrieves data in the <mark>sales</mark> and <mark>menu</mark> combined.
-* Then it is grouped by <mark>product_name</mark> to calculate how many times a certain item is purchased.
-* It is ordered by the <mark>times_purchased</mark> in descending order and with the limit of 1 to display the first value in the table row.
+* The SQL query returns the column <code>product_name</code> and <code>times_purchased</code>.
+* The <code>COUNT(M.product_name)</code> function counts the number of the <code>product_name<code> with the alias <code>times_purchased</code>.
+* This table retrieves data in the <code>sales</code> and <code>menu</code> combined.
+* Then it is grouped by <code>product_name</code> to calculate how many times a certain item is purchased.
+* It is ordered by the <code>times_purchased</code> in descending order and with the limit of 1 to display the first value in the table row.
 
 5. Which item was the most popular for each customer?
 
@@ -151,10 +151,10 @@ WHERE ranks = 1;
 <img src="Dannys_Diner_5.jpeg" width="20%", height="5%">
 </div>
 
-* This SQL query creates a CTE named popular that retrieves the columns <mark>customer_id</mark>, <mark>popular_count</mark> and <mark>ranks</mark> from the combined table of <mark>sales</mark> and <mark>menu</mark>.
-* The <mark>COUNT(product_name)</mark> in the CTE popular counts each product name.
-* The <mark>DENSE_RANK()</mark> function ranks the counts of each product name by customer_id on descending order and they are grouped by <mark>customer_id</mark> and <mark>product_name</mark>.
-* The main query returns the <mark>customer_id</mark> and <mark>product_name</mark> from the CTE named popular and filtered the ranks that is equal to 1.
+* This SQL query creates a CTE named popular that retrieves the columns <code>customer_id</code>, <code>popular_count</code> and <code>ranks</code> from the combined table of <code>sales</code> and <code>menu</code>.
+* The <code>COUNT(product_name)</code> in the CTE popular counts each product name.
+* The <code>DENSE_RANK()</code> function ranks the counts of each product name by customer_id on descending order and they are grouped by <code>customer_id</code> and <code>product_name</code>.
+* The main query returns the <code>customer_id</code> and <code>product_name</code> from the CTE named popular and filtered the ranks that is equal to 1.
 * As a result, the query returns the customer's ID, the most ordered product, and the number of times it was ordered by that customer.
 
 6. Which item was purchased first by the customer after they became a member?
@@ -179,11 +179,24 @@ WHERE ranks = 1;
 <img src="Dannys_Diner_6.jpeg" width="20%", height="5%">
 </div>
 
-* The SQL query has a <mark>Common Table Expressions (CTE)</mark> named as CTE returns the column <mark>customer_id</mark>, <mark>product_name</mark>, <mark>order_date</mark>, <mark>join_date</mark> and <mark>ranks</mark>.
-* The CTE retrieves its data from the 3 tables <mark>sales</mark>, <mark>menu</mark> and <mark>members</mark> joined.
-* The <mark>sales</mark> table is joined to <mark>menu</mark> table on their product ID's while the <mark>members</mark> table is joined on <code>sales</code> table by their customer ID's.
-* 
+* The SQL query has a <mark>Common Table Expressions (CTE)</mark> named as CTE returns the column <code>customer_id</code>, <code>product_name</code>, <code>order_date</code>, <code>join_date</code> and <code>ranks</code>.
+* The CTE retrieves its data from the 3 tables <code>sales</code>, <code>menu</code> and <code>members</code> joined.
+* The <code>sales</code> table is joined to <code>menu</code> table on their product ID's while the <code>members</code> table is joined on <code>sales</code> table by their customer ID's.
+* The result of CTE table filtered when the <code>order_date</code> is greater than the <code>join_date</code> to return the order of customers after they become a member.
+* The main query returns the <code>customer_id</code> and <code>product_name</code> from the CTE table.
+* Finally the result is filtered where the <code>ranks</code> column is equal to 1.
 
+7. Which item was purchased just before the customer became a member?
+
+```sql
+SELECT S.customer_id, product_name
+FROM sales AS S
+LEFT JOIN menu AS M
+ON S.product_id = M.product_id
+LEFT JOIN members AS ME
+ON S.customer_id = ME.customer_id
+WHERE order_date < join_date;
+```
 
 
 
