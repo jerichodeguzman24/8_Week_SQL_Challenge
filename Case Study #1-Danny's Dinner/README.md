@@ -36,7 +36,7 @@ Danny has shared with you 3 key datasets for this case study:
 
 # Case Study Questions and Solutions
 
-1. What is the total amount each customer spent at the restaurant?
+<strong>1. What is the total amount each customer spent at the restaurant?</strong>
 
 ```sql
 SELECT S.customer_id AS customer_id, SUM(M.price) AS total_amount
@@ -59,7 +59,7 @@ ORDER BY customer_id;
 * The query calculates each <code>customer_id</code> by the sum of the <code>price</code> of the product.
 * Finally the results are alphabetically ordered by <code>customer_id</code>.
 
-2. How many days has each customer visited the restaurant?
+<strong>2. How many days has each customer visited the restaurant?</strong>
 
 ```sql
 SELECT customer_id, COUNT(DISTINCT order_date) AS No_days
@@ -79,7 +79,7 @@ GROUP BY customer_id;
 * The <code>COUNT(DISTINCT order_date)</code> calculates the number of uniques order dates for each customer.
 * Finally, the query presents the <code>customer_id</code> and the total number of uniques order dates as <code>(No_days)</code>.
 
-3. What was the first item from the menu purchased by each customer?
+<strong>3. What was the first item from the menu purchased by each customer?</strong>
 
 ```sql
 WITH first_order AS (SELECT S.customer_id, M.product_name,
@@ -106,7 +106,7 @@ WHERE rank_order = 1;
 * The main query gets the <code>customer_id</code>, <code>product_name</code>, and <code>order_date</code> column on the CTE named **first_order**.
 * Lastly, main query filtered when the <code>rank_order</code> is equals to 1, which means the earliest purchase.
 
-4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+<strong>4. What is the most purchased item on the menu and how many times was it purchased by all customers?</strong>
 
 ```sql
 SELECT M.product_name AS product_name, COUNT(M.product_name) AS times_purchased
@@ -130,7 +130,7 @@ LIMIT 1;
 * Then it is grouped by <code>product_name</code> to calculate how many times a certain item is purchased.
 * It is ordered by the <code>times_purchased</code> in descending order and with the limit of 1 to display the first value in the table row.
 
-5. Which item was the most popular for each customer?
+<strong>5. Which item was the most popular for each customer?</strong>
 
 ```sql
 WITH popular AS (SELECT customer_id, product_name, COUNT(product_name) AS popular_count,
@@ -157,7 +157,7 @@ WHERE ranks = 1;
 * The main query returns the <code>customer_id</code> and <code>product_name</code> from the CTE named popular and filtered the ranks that is equal to 1.
 * As a result, the query returns the customer's ID, the most ordered product, and the number of times it was ordered by that customer.
 
-6. Which item was purchased first by the customer after they became a member?
+<strong>6. Which item was purchased first by the customer after they became a member?</strong>
 
 ```sql
 WITH CTE AS (SELECT S.customer_id, product_name, order_date, join_date, DENSE_RANK() OVER(PARTITION BY S.customer_id ORDER BY order_date ASC) AS ranks
@@ -186,7 +186,7 @@ WHERE ranks = 1;
 * The main query returns the <code>customer_id</code> and <code>product_name</code> from the CTE table.
 * Finally the result is filtered where the <code>ranks</code> column is equal to 1.
 
-7. Which item was purchased just before the customer became a member?
+<strong>7. Which item was purchased just before the customer became a member?</strong>
 
 ```sql
 SELECT S.customer_id, product_name
@@ -209,7 +209,7 @@ WHERE order_date < join_date;
 * The <mark>sales</mark> table and <mark>menu</mark> table are joined by their product ID's, while the <mark>members</mark> table and <mark>members</mark> table are joined by their customer ID's.
 * Lastly, the code results return the <code>customer_id</code> and <code>product_name</code>, filtered when <code>order_date</code> is less than the <code>join_date</code>.
 
-8. What is the total items and amount spent for each member before they became a member?
+<strong>8. What is the total items and amount spent for each member before they became a member?</strong>
 
 ```sql
 SELECT S.customer_id AS customer_id, COUNT(product_name) AS total_items, SUM(price) AS total_amount
@@ -235,7 +235,7 @@ GROUP BY customer_id;
 * The query is also filtered where the <code>order_date</code> is less than the <code>join_date</code> to get the purchases of each customer before they become a member.
 * Finally, the query is grouped by <code>customer_id</code> to know what each customer bought before they become a member.
 
-9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+<strong>9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?</strong>
 
 ```sql
 WITH CTE AS (SELECT customer_id, CASE WHEN product_name = 'sushi' THEN price * 20 ELSE price * 10 END AS points
@@ -265,7 +265,7 @@ Otherwise, the regular price is considered.
 * The query then presents the <code>customer_id</code> and the scaled total_points for each customer based on their purchases.
 * Finally, the results are sorted in ascending order based on the <code>customer_id</code>.
 
-10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+<strong>10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?</strong>
 
 ```sql
 WITH dates_table AS (SELECT customer_id,
@@ -306,3 +306,25 @@ ORDER BY S.customer_id;
 * Finally, the results are sorted in ascending order based on the <code>customer_id</code>.
 
 # Bonus Questions and Solutions
+
+<strong>Join All The Things</strong>
+
+```sql
+SELECT S.customer_id, order_date, product_name, price,
+CASE WHEN order_date >= join_date THEN 'Y'
+ELSE 'N' END AS member
+FROM sales AS S
+LEFT JOIN menu AS M
+ON S.product_id = M.product_id
+LEFT JOIN members AS ME
+ON S.customer_id = ME.customer_id;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="join_all_things.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query selects the column <code>customer_id</code>, <code>order_date</code>, <code>product_name</code> and <code>price</code>.
+* This query uses <code>CASE</code> function 
