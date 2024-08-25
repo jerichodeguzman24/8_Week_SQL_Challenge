@@ -181,7 +181,7 @@ WHERE ranks = 1;
 
 * The SQL query has a <mark>Common Table Expressions (CTE)</mark> named as CTE returns the column <mark>customer_id</mark>, <mark>product_name</mark>, <mark>order_date</mark>, <mark>join_date</mark> and <mark>ranks</mark>.
 * The CTE retrieves its data from the 3 tables <mark>sales</mark>, <mark>menu</mark> and <mark>members</mark> joined.
-* The <mark>sales</mark> table is joined to <mark>menu</mark> table on their product ID's while the <mark>members</mark> table is joined on <mark>sales</mark> table by their customer ID's.
+* The <mark>sales</mark> table is joined to <mark>menu</mark> table on their product ID's while the <mark>members</mark> table is joined on <code>sales</code> table by their customer ID's.
 * 
 
 
