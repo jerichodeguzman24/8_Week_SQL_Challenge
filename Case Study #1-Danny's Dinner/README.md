@@ -9,7 +9,7 @@
 * [Introduction](#Introduction)
 * [Problem Statement](#Problem-Statement)
 * [Entity Relation Diagram](#Entity-Relationship-Diagram)
-* [Case Study Questions and Solutions](URL)
+* [Case Study Questions and Solutions](#Case-Study-Questions-and-Solutions)
 * [Bonus Questions and Solutions](URL)
 * [Key Insights](URL)
 
@@ -151,7 +151,41 @@ WHERE ranks = 1;
 <img src="Dannys_Diner_5.jpeg" width="20%", height="5%">
 </div>
 
-* This SQL query creates a CTE named popular
+* This SQL query creates a CTE named popular that retrieves the columns <mark>customer_id</mark>, <mark>popular_count</mark> and <mark>ranks</mark> from the combined table of <mark>sales</mark> and <mark>menu</mark>.
+* The <mark>COUNT(product_name)</mark> in the CTE popular counts each product name.
+* The <mark>DENSE_RANK()</mark> function ranks the counts of each product name by customer_id on descending order and they are grouped by <mark>customer_id</mark> and <mark>product_name</mark>.
+* The main query returns the <mark>customer_id</mark> and <mark>product_name</mark> from the CTE named popular and filtered the ranks that is equal to 1.
+* As a result, the query returns the customer's ID, the most ordered product, and the number of times it was ordered by that customer.
+
+6. Which item was purchased first by the customer after they became a member?
+
+```sql
+WITH CTE AS (SELECT S.customer_id, product_name, order_date, join_date, DENSE_RANK() OVER(PARTITION BY S.customer_id ORDER BY order_date ASC) AS ranks
+				FROM sales AS S
+				LEFT JOIN menu AS M
+				ON S.product_id = M.product_id
+				LEFT JOIN members AS ME
+				ON S.customer_id = ME.customer_id
+				WHERE order_date > join_date) 
+                
+SELECT customer_id AS customer_id, product_name
+FROM CTE
+WHERE ranks = 1;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="Dannys_Diner_6.jpeg" width="20%", height="5%">
+</div>
+
+* The SQL query has a <mark>Common Table Expressions (CTE)</mark> named as CTE returns the column <mark>customer_id</mark>, <mark>product_name</mark>, <mark>order_date</mark>, <mark>join_date</mark> and <mark>ranks</mark>.
+* The CTE retrieves its data from the 3 tables <mark>sales</mark>, <mark>menu</mark> and <mark>members</mark> joined.
+* The <mark>sales</mark> table is joined to <mark>menu</mark> table on their product ID's while the <mark>members</mark> table is joined on <mark>sales</mark> table by their customer ID's.
+* 
+
+
+
 
 
 
