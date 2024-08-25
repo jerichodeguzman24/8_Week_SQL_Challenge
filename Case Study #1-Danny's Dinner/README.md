@@ -54,10 +54,10 @@ ORDER BY customer_id;
 </div>
 
 * The SQL query retrieves the <code>customer_id</code> and calculate the sum of the price aliasing the name as the <code>(total_amount)</code> by each customer in the restaurant.
-* It combines the <mark>sales</mark> and <mark>menu</mark> table based on matching each table's <code>product_id</code>.
+* It combines the <code>sales</code> and <code>menu</code> table based on matching each table's <code>product_id</code>.
 * The results are grouped by <code>customer_id</code>.
 * The query calculates each <code>customer_id</code> by the sum of the <code>price</code> of the product.
-* Finally the results are alphabetically ordered by <code>customer_id<code>.
+* Finally the results are alphabetically ordered by <code>customer_id</code>.
 
 2. How many days has each customer visited the restaurant?
 
