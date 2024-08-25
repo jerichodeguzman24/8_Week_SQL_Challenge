@@ -323,8 +323,60 @@ ON S.customer_id = ME.customer_id;
 **Answer:**
 
 <div align="left">
-<img src="join_all_things.jpeg" width="20%", height="5%">
+<img src="join_all_things.jpeg" width="30%", height="5%">
 </div>
 
 * The SQL query selects the column <code>customer_id</code>, <code>order_date</code>, <code>product_name</code> and <code>price</code>.
-* This query uses <code>CASE</code> function 
+* This query uses <code>CASE</code> function returns Y if the <code>order_date</code> is greater than or equal to the <code>join_date</code> and it returns N if the condition is not met. Y means that the customer is a member and N means that the customer is not a member.
+* We are getting the data from the combined 3 tables, these are the <mark>sales</mark>, <mark>menu</mark> and <mark>members</mark>.
+* The <mark>sales</mark> table is connected to <mark>menu</mark> table on the <code>product_id</code>, while the <mark>sales</mark> table is connected to the <mark>members</mark> table through the <code>customer_id</code>.
+
+<strong>Rank All Things</strong>
+
+```sql
+WITH CTE AS (SELECT S.customer_id, order_date, product_name, price,
+		CASE WHEN order_date >= join_date THEN 'Y'
+		ELSE 'N' END AS member_status
+		FROM sales AS S
+		LEFT JOIN menu AS M
+		ON S.product_id = M.product_id
+		LEFT JOIN members AS ME
+		ON S.customer_id = ME.customer_id)
+
+SELECT customer_id, order_date, product_name, price, member_status, CASE
+        WHEN member_status = 'N' THEN NULL
+        ELSE RANK() OVER (PARTITION BY customer_id, member_status ORDER BY order_date)
+	END AS ranking
+FROM CTE;
+```
+
+**Answer:**
+
+<div align="left">
+<img src="rank_all_things.jpeg" width="30%", height="5%">
+</div>
+
+* The SQL query has a CTE named as CTE and it returns the columns <code>customer_id</code>, <code>order_date</code>, <code>product_name</code>, <code>prize</code> and <code>member_status</code>.
+* The <code>CASE</code> function is used in CTE to return Y if the <code>order_date</code> is greater than or equal to the <code>join_date</code> and it returns N if the condition is not met. Y means that the customer is a member and N means that the customer is not a member.
+* The data retrieve from the 3 tables combined which are the <mark>sales</mark>, <mark>menu</mark> and <mark>members</mark> table.
+* The <mark>sales</mark> table is connected to <mark>menu</mark> table on the <code>product_id</code>, while the <mark>sales</mark> table is connected to the <mark>members</mark> table through the <code>customer_id</code>.
+* Then the main query gets the data from the CTE table.
+* It also uses <code>CASE</code> function to return <mark>null</mark> if the <code>member_status</code> is equals to 'N' and return the rank of each <code>order_date</code> partitioned by <code>customer_id</code> and <code>member_status</code>. This column named as <code>ranking</code>.
+
+# Key Insights
+
+* Customer Spending: The total amount spent by each customer at Danny's Diner varies widely. Some customers have spent significantly more than others, indicating potential high-value customers or loyal patrons.
+* Customer Visits: The number of days each customer visited the restaurant also varies, showing different patterns of customer engagement. Some customers visit frequently, while others may visit less often.
+* First Purchases: Understanding the first items purchased by each customer can help Danny identify popular entry items and potentially attract new customers.
+* Most Popular Item: The most purchased item on the menu is valuable information for Danny. He can use this insight to optimize inventory management and capitalize on the popularity of the item.
+* Personalized Recommendations: Knowing the most popular item for each customer allows Danny to make personalized menu suggestions, enhancing the dining experience for his customers.
+* Customer Loyalty: The data about purchases before and after joining the loyalty program helps Danny evaluate the effectiveness of the loyalty program and its impact on customer behavior.
+* Bonus Points for New Members: By offering 2x points to new members during their first week, Danny incentivizes more spending, encouraging members to engage more actively with the program.
+* Member Points: The points earned by each member can be used to assess their loyalty and potentially offer targeted rewards and promotions.
+* Data Visualization: Creating visualizations based on the data and insights can further aid Danny in understanding trends and making data-driven decisions.
+* Customer Segmentation: By analyzing customer spending habits, Danny can segment his customer base and tailor marketing strategies accordingly.
+* Expanding Membership: Danny can use the insights from this data to refine his loyalty program and attract new members, leveraging the success of the program.
+* Inventory Management: Knowing the most popular and least popular items can help Danny optimize his inventory, reduce wastage, and maximize profits.
+* Menu Optimization: Danny can use the data to evaluate the performance of different menu items and consider introducing new dishes based on customer preferences.
+* Customer Engagement: Analyzing customer behavior can help Danny understand what keeps customers coming back and help him create more engaging experiences.
+* Long-Term Growth: By leveraging data analysis, Danny can make informed decisions that contribute to the long-term growth and success of Danny's Diner.
