@@ -10,8 +10,8 @@
 * [Problem Statement](#Problem-Statement)
 * [Entity Relation Diagram](#Entity-Relationship-Diagram)
 * [Case Study Questions and Solutions](#Case-Study-Questions-and-Solutions)
-* [Bonus Questions and Solutions](URL)
-* [Key Insights](URL)
+* [Bonus Questions and Solutions](#Bonus-Questions-and-Solutions)
+* [Key Insights](#Key-Insights)
 
 # Introduction
 In early 2021, Danny loves to eat Japanese food so he embark a risky venture to open up a cute little Japanese restaurant that sells 3 of his favourite foods like sushi, curry and ramen.However, lacking data analysis expertise, the restaurant struggles to leverage the basic data collected during its initial months to make informed business decisions. Danny's Diner seeks assistance using the data for him to make sure that the restaurant is runnning effectively.
