@@ -23,4 +23,21 @@ Welcome to the Pizza Runner Case Study! Follow Danny's journey as he combines th
   <img src="Case_Study_2_ERD.jpeg" width="50%"/>
 </div>
 
+# Data Cleaning and Transformation
+
+* customer_orders table before...
+
+<div>
+  <img src="customer_table_clean.png" width="50%"/>
+</div>
+
+* The customer_orders table consists of individual pizza orders, with each row representing a unique pizza.
+* Key columns in the table are pizza_id, exclusions, and extras.
+* Before utilizing the data for queries, the exclusions and extras columns require a data cleaning process to ensure accuracy and consistency.
+* Data cleaning involves handling missing or null values in the exclusions and extras columns.
+* The ingredient_id values in the exclusions and extras columns need to be standardized for uniformity.
+* Inconsistencies and duplicates in the exclusions and extras data should be resolved to eliminate ambiguities.
+* By performing thorough data cleaning, the customer_orders table will be optimized for effective analysis.
+* The cleaned data will provide valuable insights into customer preferences, enabling better decision-making for Pizza Runner's operations.
+* With accurate data, Pizza Runner can efficiently meet customer demands and deliver an enhanced pizza ordering experience.
 
