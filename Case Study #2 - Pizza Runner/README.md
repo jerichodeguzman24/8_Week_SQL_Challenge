@@ -22,3 +22,5 @@ Welcome to the Pizza Runner Case Study! Follow Danny's journey as he combines th
 <div>
   <img src="Case_Study_2_ERD.jpeg" width="50%"/>
 </div>
+
+
