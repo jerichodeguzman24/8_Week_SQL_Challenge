@@ -41,3 +41,24 @@ Welcome to the Pizza Runner Case Study! Follow Danny's journey as he combines th
 * The cleaned data will provide valuable insights into customer preferences, enabling better decision-making for Pizza Runner's operations.
 * With accurate data, Pizza Runner can efficiently meet customer demands and deliver an enhanced pizza ordering experience.
 
+```sql
+DROP TABLE IF EXISTS customer_orders_tempp;
+CREATE TABLE IF NOT EXISTS customer_orders_tempp AS
+SELECT 
+  order_id,
+  customer_id,
+  pizza_id,
+  CASE 
+    WHEN exclusions IS NULL OR exclusions LIKE 'null' THEN ''
+    ELSE exclusions
+  END AS exclusions,
+  CASE 
+    WHEN extras IS NULL OR extras LIKE 'null' THEN ''
+    ELSE extras
+  END AS extras,
+  order_time
+FROM customer_orders;
+
+SELECT*
+FROM customer_orders_temp
+```sql
