@@ -1,4 +1,4 @@
-# Case Study #2 - Pizza Runner
+# Case Study #2 - Pizza Runner 🍕
 
 <div>
   <img src="SQL_Challenge_pic_2.png" width="50%"/>
@@ -19,6 +19,6 @@ Welcome to the Pizza Runner Case Study! Follow Danny's journey as he combines th
 
 # Entity Relationship Diagram
 
-<div align="left">
+<div>
   <img scr="Case_Study_2_ERD.jpeg" width="50%"/>
 </div>
