@@ -1,6 +1,8 @@
 # Case Study #2 - Pizza Runner
 
-![A beautiful sunset](SQL_Challenge_pic_2.png)
+<div>
+  <img src="SQL_Challenge_pic_2.png" width="50%"/>
+</div>
 
 # Contents
 
