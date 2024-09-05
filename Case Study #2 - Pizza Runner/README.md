@@ -148,3 +148,19 @@ FROM customer_orders_tempp
 <div>
   <img src="Q1.jpeg" width="25%"/>
 </div>
+
+* The SQL query selects the number of pizza orders (<code>pizza_orders</code>) from the <code>customer_orders_tempp</code/> table.
+* The <code>COUNT(order_id)</code> function calculates the total number of order IDs in the <code>customer_orders_tempp</code> table, effectively giving the count of pizza orders.
+* As a result, the query presents the total count of pizza orders as <code>pizza_orders</code>.
+
+2. How many unique customer orders were made?
+
+```sql
+SELECT COUNT(DISTINCT order_id) AS unique_orders
+FROM customer_orders_tempp
+```
+
+* The SQL query selects the number of unique orders (<code>unique_orders</code>) from the <code>customer_orders_tempp</code> table.
+* The <code>COUNT(DISTINCT order_id)</code> function calculates the total count of distinct order IDs in the <code>customer_orders_tempp</code> table, effectively giving the count of unique orders.
+* As a result, the query presents the total count of unique orders as unique_orders.
+
