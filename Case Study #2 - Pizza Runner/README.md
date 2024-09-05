@@ -131,5 +131,5 @@ FROM runner_orders_temp
 * runner_orders table After AS runner_orders_temp
 
 <div>
-	<img src="
+  <img src="runner_clean.jpeg" width="50%"/>
 </div>
