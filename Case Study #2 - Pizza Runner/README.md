@@ -133,3 +133,18 @@ FROM runner_orders_temp
 <div>
   <img src="runner_clean.jpeg" width="50%"/>
 </div>
+
+# Case Study Questions & Solutions
+
+<strong>A. Pizza Metrics 🍕🍕<strong/>
+
+1. How many pizzas were ordered?
+
+```sql
+SELECT COUNT(order_id) AS pizza_orders
+FROM customer_orders_tempp
+```
+
+<div>
+  <img src="Q1.jpeg" width="50%"/>
+</div>
