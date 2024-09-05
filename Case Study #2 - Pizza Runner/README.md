@@ -146,5 +146,5 @@ FROM customer_orders_tempp
 ```
 
 <div>
-  <img src="Q1.png" width="25%"/>
+  <img src="Q1.jpeg" width="25%"/>
 </div>
