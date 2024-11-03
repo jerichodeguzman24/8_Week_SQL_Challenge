@@ -376,3 +376,6 @@ GROUP BY 1
 * Finally, the results are sorted based on the textual representation of the day of the week.
 
 <strong>B. Runner and Customer Experience 💁‍♂️🍕</strong>
+
+1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+
